@@ -22,4 +22,15 @@ public class User {
         return balance;
     }
 
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public void setAccountPin(int accountPin) {
+        this.accountPin = accountPin;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }
