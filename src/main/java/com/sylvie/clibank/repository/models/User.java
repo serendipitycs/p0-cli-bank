@@ -2,10 +2,10 @@ package com.sylvie.clibank.repository.models;
 
 public class User {
     private int accountNumber;
-    private int accountPin;
+    private String accountPin;
     private double balance;
 
-    public User (int accountNumber, int accountPin)
+    public User (int accountNumber, String accountPin)
     {
         this.accountNumber = accountNumber;
         this.accountPin = accountPin;
@@ -15,7 +15,7 @@ public class User {
     public int getAccountNumber() {
         return accountNumber;
     }
-    public int getAccountPin() {
+    public String getAccountPin() {
         return accountPin;
     }
     public double getBalance() {
@@ -26,7 +26,7 @@ public class User {
         this.accountNumber = accountNumber;
     }
 
-    public void setAccountPin(int accountPin) {
+    public void setAccountPin(String accountPin) {
         this.accountPin = accountPin;
     }
 

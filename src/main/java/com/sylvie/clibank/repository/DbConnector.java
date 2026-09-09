@@ -16,14 +16,15 @@ public class DbConnector {
 
         //System.out.println("Connecting to database: " + url + " with: " + user + " & " + password);
 
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
             if (conn != null) {
-                //System.out.println("Successfully connected to PostgreSQL!");
+                System.out.println("Successfully connected to PostgreSQL!");
                 return conn;
             }
             return null;
         } catch (SQLException e) {
-            //System.err.println("Database connection failed!");
+            System.err.println("Database connection failed!");
             //e.printStackTrace();
             return null;
         }
