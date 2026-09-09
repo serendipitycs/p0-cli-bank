@@ -31,10 +31,39 @@ public class MainInterface {
 
             switch (input) {
                 case "help":
+                    if (authServ.isAuthenticatedUser()) {
+                        formatter.printAuthedHelpScreen();
+                    }
+                    else {
+                        formatter.printNoAuthHelpScreen();
+                    }
                     break;
                 case "login":
+                    boolean signedIn = false;
+                    boolean failedSignIn = false;
+                    while (!signedIn){
+                        if (!failedSignIn) {
+                            formatter.printLoginScreen1();
+                        } else {
+                            formatter.printLoginScreenFail();
+                        }
+                        int accountNum = -1;
+                        try {
+                            accountNum = scanner.nextInt();
+                        } catch (Exception e) {}
+                        formatter.printLoginScreen2();
+                        String pin = scanner.next();
+                        if (authServ.signIn(accountNum,pin)) {
+                            formatter.printLoginSuccessfulScreen(accountNum);
+                            signedIn = true;
+                        } else {
+                            failedSignIn = true;
+                        }
+                    }
                     break;
                 case "logout":
+                    authServ.signOut();
+                    formatter.printLogoutScreen();
                     break;
                 case "register":
                     formatter.printRegisterScreen(false);

@@ -29,21 +29,26 @@ public class UserRepository {
     }
 
     public User readUserByAccountNumber(int accountNumber) {
-        User returnUser = null;
         String sql = "SELECT * FROM Users WHERE account_num = ?";
         try {
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setInt(1, accountNumber);
             ResultSet rs = ps.executeQuery();
-            if (rs.getFetchSize() != 0) {
-                returnUser.setAccountNumber(rs.getInt("account_num"));
-                returnUser.setAccountPin(rs.getString("pin"));
-                returnUser.setBalance(rs.getDouble("balance"));
+            int accountNum;
+            String pin;
+            double balance;
+            if (rs.next()) {
+                accountNum = rs.getInt("account_num");
+                pin = rs.getString("pin");
+                balance = rs.getDouble("balance");
+                return new User(accountNumber,pin,balance);
+            } else {
+                return null;
             }
         } catch (Exception e) {
 
         }
-        return returnUser;
+        return null;
     }
 
     public void updateUserBalanceByAccountNumber(int accountNumber, double newBalance) {

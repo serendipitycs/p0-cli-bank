@@ -21,7 +21,7 @@ public class AuthenticationService {
         if (user == null) {
             return false;
         }
-        if (user.getAccountNumber() == accountNum && user.getAccountPin() == pin) {
+        if (user.getAccountNumber() == accountNum && user.getAccountPin().equals(pin)) {
             authenticatedUser = true;
             authUserAccountNumber = accountNum;
             return true;

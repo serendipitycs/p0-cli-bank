@@ -9,33 +9,48 @@ public class CLIFormatter {
     public CLIFormatter (UserService userServ) {
         this.userServ = userServ;
     }
-
     public record screenLine(String text, String offset){}
 
     public void printWelcomeScreen(int accountNum) {
         printScreenLines(new screenLine[]{
             getAccountNumScreenLine(accountNum),
-            new screenLine("","Center"),
+            getHorizScreenLine(),
             new screenLine("Welcome to the Bank of CLI!","Center"),
-            new screenLine("","Center"),
+            getBlankScreenLine(),
             new screenLine("Use the \"help\" command to see available commands","Center")
+        });
+    }
+
+    public void printAuthedHelpScreen() {
+        printScreenLines(new screenLine[] {
+            new screenLine("Help Page","Center"),
+            new screenLine("","Center")
+        });
+    }
+
+    public void printNoAuthHelpScreen() {
+        printScreenLines(new screenLine[] {
+            new screenLine("Help Page - Available Commands", "Center"),
+            getBlankScreenLine(),
+            new screenLine("* Login - Authenticate with Account # and PIN.","Left"),
+            new screenLine("* Register - Create a new account with PIN.", "Left")
         });
     }
 
     public void printRegisterScreen(boolean failedPin) {
         if (!failedPin) {
             printScreenLines(new screenLine[]{
-                new screenLine("","Center"),
+                getBlankScreenLine(),
                 new screenLine("Register for a Bank of CLI account!","Center"),
-                new screenLine("","Center"),
+                getBlankScreenLine(),
                 new screenLine("Please enter your desired PIN code below...","Center"),
                 new screenLine("(must be 4 digits and a positive number)","Center")
         });}
         else {
             printScreenLines(new screenLine[]{
-                new screenLine("","Center"),
+                getBlankScreenLine(),
                 new screenLine("Register for a Bank of CLI account!","Center"),
-                new screenLine("","Center"),
+                getBlankScreenLine(),
                 new screenLine("Invalid PIN, try again...","Center"),
                 new screenLine("(must be 4 digits and a positive number)","Center")
             });
@@ -45,11 +60,68 @@ public class CLIFormatter {
     public void printSuccessfulRegistrationScreen(int accountNum) {
         printScreenLines(new screenLine[]{
             getAccountNumScreenLine(accountNum),
-            new screenLine("","Center"),
-            new screenLine("You successfully created an account, you're logged in now!","Center"),
+            getHorizScreenLine(),
+            new screenLine("You've created an account, you're logged in now!","Center"),
             new screenLine("Please note your credentials for future login:","Center"),
             new screenLine("Account Number: " + accountNum + " | PIN Code: ****", "Center"),
         });
+    }
+
+    public void printLoginScreen1() {
+        printScreenLines(new screenLine[] {
+            getBlankScreenLine(),
+            new screenLine("Login to your Bank of CLI account!","Center"),
+            getBlankScreenLine(),
+            new screenLine("Please enter your account number below...","Center"),
+            getBlankScreenLine()
+        });
+    }
+    public void printLoginScreen2() {
+        printScreenLines(new screenLine[] {
+                getBlankScreenLine(),
+                new screenLine("Login to your Bank of CLI account!","Center"),
+                getBlankScreenLine(),
+                new screenLine("Please enter your PIN code below...","Center"),
+                getBlankScreenLine()
+        });
+    }
+
+    public void printLoginScreenFail() {
+        printScreenLines(new screenLine[] {
+                getBlankScreenLine(),
+                new screenLine("Incorrect Login, Try again...","Center"),
+                getBlankScreenLine(),
+                new screenLine("Please enter your account number below...","Center"),
+                getBlankScreenLine()
+        });
+    }
+
+    public void printLoginSuccessfulScreen(int accountNum) {
+        printScreenLines(new screenLine[] {
+                getAccountNumScreenLine(accountNum),
+                getHorizScreenLine(),
+                getBlankScreenLine(),
+                new screenLine("Logged into your Bank of CLI account!","Center"),
+                getBlankScreenLine()
+        });
+    }
+
+    public void printLogoutScreen() {
+        printScreenLines(new screenLine[] {
+            getAccountNumScreenLine(-1),
+            getHorizScreenLine(),
+            new screenLine("You've logged out of your account","Center"),
+            getBlankScreenLine(),
+            new screenLine("Use the \"help\" command to see available commands","Center")
+        });
+    }
+
+    public screenLine getBlankScreenLine() {
+        return new screenLine("","Center");
+    }
+
+    public screenLine getHorizScreenLine() {
+        return new screenLine("--------------------------------------------------------","Center");
     }
 
     public screenLine getAccountNumScreenLine(int accountNum) {

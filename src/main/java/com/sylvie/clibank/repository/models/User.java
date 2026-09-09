@@ -12,6 +12,13 @@ public class User {
         balance = 0;
     }
 
+    public User (int accountNumber, String accountPin, double balance)
+    {
+        this.accountNumber = accountNumber;
+        this.accountPin = accountPin;
+        this.balance = balance;
+    }
+
     public int getAccountNumber() {
         return accountNumber;
     }
