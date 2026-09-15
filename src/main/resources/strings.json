@@ -131,5 +131,47 @@
     "line3" : { "text" :  "Deposit completed!", "centering" : "Center"},
     "line4" : { "text" :  "You deposited $$$", "centering" : "Center"},
     "line5" : { "text" :  "Your new balance is $bal", "centering" : "Center"}
+  },
+  "transfer" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Transfer your money to another account:", "centering" : "Center"},
+    "line4" : { "text" :  "", "centering" : "Center"},
+    "line5" : { "text" :  "Please enter an Account # to transfer funds to...", "centering" : "Center"}
+  },
+  "transfer2" : {
+  "line1" : { "text" :  "$header", "centering" : "Center"},
+  "line2" : { "text" :  "---", "centering" : "Center"},
+  "line3" : { "text" :  "Transfer your money to another account:", "centering" : "Center"},
+  "line4" : { "text" :  "Please enter the amount to transfer...", "centering" : "Center"},
+  "line5" : { "text" :  "(Must be a positive number and have funds available)", "centering" : "Center"}
+  },
+  "transferFailedAccNum" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Transfer failed...", "centering" : "Center"},
+    "line4" : { "text" :  "Invalid Account # Try again..", "centering" : "Center"},
+    "line5" : { "text" :  "Please enter an Account # to transfer funds to...", "centering" : "Center"}
+  },
+  "transferFailedInsufficient" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Transfer failed...", "centering" : "Center"},
+    "line4" : { "text" :  "Insufficient funds on your account.. Try again..", "centering" : "Center"},
+    "line5" : { "text" :  "Please enter the amount to transfer...", "centering" : "Center"}
+  },
+  "transferFailed" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Transfer failed...", "centering" : "Center"},
+    "line4" : { "text" :  "Invalid input (must be positive number).. Try again..", "centering" : "Center"},
+    "line5" : { "text" :  "Please enter the amount to transfer...", "centering" : "Center"}
+  },
+  "transferSuccess" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Transfer Successful!", "centering" : "Center"},
+    "line4" : { "text" :  "You sent $$$", "centering" : "Center"},
+    "line5" : { "text" :  "Your new balance is $bal", "centering" : "Center"}
   }
 }

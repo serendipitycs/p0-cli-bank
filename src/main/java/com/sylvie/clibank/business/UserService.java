@@ -12,7 +12,7 @@ public class UserService {
     public boolean deposit(int accountNum, double amount) {
         if (amount < 0) return false;
         double newBalance = userRepo.readUserByAccountNumber(accountNum).getBalance() + amount;
-        userRepo.updateUserBalanceByAccountNumber(accountNum,newBalance);
+        userRepo.updateUserBalanceByAccountNumber(accountNum, newBalance);
         return true;
     }
 
@@ -24,7 +24,7 @@ public class UserService {
         if (amount < 0) return "Negative";
         double newBalance = userRepo.readUserByAccountNumber(accountNum).getBalance() - amount;
         if (newBalance < 0) return "Insufficient";
-        userRepo.updateUserBalanceByAccountNumber(accountNum,newBalance);
+        userRepo.updateUserBalanceByAccountNumber(accountNum, newBalance);
         return "Complete";
     }
 }
