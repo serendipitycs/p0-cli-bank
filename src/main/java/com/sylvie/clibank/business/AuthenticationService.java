@@ -45,7 +45,7 @@ public class AuthenticationService {
         try {
             int pinInt = Integer.parseInt(pin);
             if (pinInt < 0) return false;
-            if (pinInt > 9999) return false;
+            if (pin.length() > 4) return false;
             return true;
         } catch (Exception e) {
             return false;

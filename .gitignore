@@ -12,6 +12,8 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/dataSources.xml
+.idea/db-forest-config.xml
 
 ### Eclipse ###
 .apt_generated

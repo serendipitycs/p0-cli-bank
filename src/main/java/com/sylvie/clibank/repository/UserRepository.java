@@ -64,6 +64,18 @@ public class UserRepository {
 
     }
 
+    public double getUserBalanceByAccountNumber(int accountNumber) {
+        String sql = "SELECT balance FROM Users WHERE account_num = ?";
+        try {
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1,accountNumber);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getDouble("balance");
+        } catch (Exception e) {}
+        return Double.MIN_VALUE;
+    }
+
     public int getNextAccountNumber() {
         String sql = "SELECT MAX(account_num) as current_acc_num FROM Users";
         try {

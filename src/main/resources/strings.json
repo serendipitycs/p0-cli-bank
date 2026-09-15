@@ -1,0 +1,135 @@
+{
+  "welcome" : {
+  "line1" : { "text" :  "$header", "centering" : "Center"},
+  "line2" : { "text" :  "---", "centering" : "Center"},
+  "line3" : { "text" :  "Welcome to the Bank of CLI!", "centering" : "Center"},
+  "line4" : { "text" :  "", "centering" : "Center"},
+  "line5" : { "text" :  "Use the \"help\" command to see available commands", "centering" : "Center"}
+  },
+  "helpNoAuth" : {
+    "line1" : { "text" :  "== Help Page - Available Commands ==", "centering" : "Center"},
+    "line2" : { "text" :  "* Login - Authenticate with Account # and PIN", "centering" : "Left"},
+    "line3" : { "text" :  "* Register - Create a new account with PIN", "centering" : "Left"},
+    "line4" : { "text" :  "* Quit - exit the application", "centering" : "Left"},
+    "line5" : { "text" :  "", "centering" : "Center"}
+  },
+  "helpAuth" : {
+    "line1" : { "text" :  "== Help Page Page 1/2 - Available Commands ==", "centering" : "Center"},
+    "line2" : { "text" :  "* Withdraw - Withdraw money from your account", "centering" : "Left"},
+    "line3" : { "text" :  "* Deposit - Add money to your account", "centering" : "Left"},
+    "line4" : { "text" :  "* Transfer - Transfer money to another account", "centering" : "Left"},
+    "line5" : { "text" :  "* Help [Page Number] - Visit the other help pages", "centering" : "Left"}
+  },
+  "helpAuth2" : {
+    "line1" : { "text" :  "== Help Page Page 2/2 - Available Commands ==", "centering" : "Center"},
+    "line2" : { "text" :  "* Withdraw - Withdraw money from your account", "centering" : "Left"},
+    "line3" : { "text" :  "* Deposit - Add money to your account", "centering" : "Left"},
+    "line4" : { "text" :  "* Transfer - Transfer money to another account", "centering" : "Left"},
+    "line5" : { "text" :  "* Help [Page Number] - Visit the other help pages", "centering" : "Left"}
+  },
+  "login" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Login to your Bank of CLI account!", "centering" : "Center"},
+    "line4" : { "text" :  "", "centering" : "Left"},
+    "line5" : { "text" :  "Please enter your account number below...", "centering" : "Center"}
+  },
+  "login2" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Login to your Bank of CLI account!", "centering" : "Center"},
+    "line4" : { "text" :  "", "centering" : "Left"},
+    "line5" : { "text" :  "Please enter your PIN code below...", "centering" : "Center"}
+  },
+  "loginFailed" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Incorrect Login, Try again...", "centering" : "Center"},
+    "line4" : { "text" :  "", "centering" : "Left"},
+    "line5" : { "text" :  "Please enter your account number below...", "centering" : "Center"}
+  },
+  "loginSuccess" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "", "centering" : "Left"},
+    "line4" : { "text" :  "Logged into your Bank of CLI account!", "centering" : "Center"},
+    "line5" : { "text" :  "", "centering" : "Center"}
+  },
+  "logout" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "", "centering" : "Left"},
+    "line4" : { "text" :  "You've logged out of your account!", "centering" : "Center"},
+    "line5" : { "text" :  "", "centering" : "Center"}
+  },
+  "register" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Register for a Bank of CLI account!", "centering" : "Center"},
+    "line4" : { "text" :  "Please enter your desired PIN code below...", "centering" : "Center"},
+    "line5" : { "text" :  "(must be 4 digits and a positive number)", "centering" : "Center"}
+  },
+  "registerFailed" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Register for a Bank of CLI account!", "centering" : "Center"},
+    "line4" : { "text" :  "Invalid PIN, try again...", "centering" : "Center"},
+    "line5" : { "text" :  "(must be 4 digits and a positive number)", "centering" : "Center"}
+  },
+  "registerSuccess" : {
+  "line1" : { "text" :  "$header", "centering" : "Center"},
+  "line2" : { "text" :  "---", "centering" : "Center"},
+  "line3" : { "text" :  "You've created an account, you're logged in now!", "centering" : "Center"},
+  "line4" : { "text" :  "Please note your credentials for future login:", "centering" : "Center"},
+  "line5" : { "text" :  "Account Number: $accnum | PIN Code: $$$", "centering" : "Center"}
+  },
+  "withdraw" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Withdraw your money!", "centering" : "Center"},
+    "line4" : { "text" :  "", "centering" : "Center"},
+    "line5" : { "text" :  "Please enter an amount to withdraw below...", "centering" : "Center"}
+  },
+  "withdrawFailed" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Withdrawl failed..", "centering" : "Center"},
+    "line4" : { "text" :  "(Please enter a positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "Please try again below...", "centering" : "Center"}
+  },
+  "withdrawInsufficient" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Withdrawl failed.. Insufficient Funds", "centering" : "Center"},
+    "line4" : { "text" :  "(Please enter a positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "Please try again below...", "centering" : "Center"}
+  },
+  "withdrawSuccess" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Withdrawl completed!", "centering" : "Center"},
+    "line4" : { "text" :  "You withdrew $$$", "centering" : "Center"},
+    "line5" : { "text" :  "Your new balance is $bal", "centering" : "Center"}
+  },
+  "deposit" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Deposit money into your account!", "centering" : "Center"},
+    "line4" : { "text" :  "", "centering" : "Center"},
+    "line5" : { "text" :  "Please enter an amount to despoit below...", "centering" : "Center"}
+  },
+  "depositFailed" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Deposit failed..", "centering" : "Center"},
+    "line4" : { "text" :  "(Enter a positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "Please try again below...", "centering" : "Center"}
+  },
+  "depositSuccess" : {
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Deposit completed!", "centering" : "Center"},
+    "line4" : { "text" :  "You deposited $$$", "centering" : "Center"},
+    "line5" : { "text" :  "Your new balance is $bal", "centering" : "Center"}
+  }
+}
