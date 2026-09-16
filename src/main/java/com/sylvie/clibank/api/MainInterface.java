@@ -3,8 +3,11 @@ package com.sylvie.clibank.api;
 import com.sylvie.clibank.business.AuthenticationService;
 import com.sylvie.clibank.business.TransactionService;
 import com.sylvie.clibank.business.UserService;
+import com.sylvie.clibank.repository.models.Transaction;
 
 import java.text.NumberFormat;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -56,7 +59,7 @@ public class MainInterface {
                     break;
                 case "history":
                     if (!authServ.isAuthenticatedUser()) continue;
-                    history();
+                    history(1);
                     break;
                 case "logs":
                     break;
@@ -73,6 +76,10 @@ public class MainInterface {
                     transfer();
                     break;
                 default:
+                    //regex matching any # of history page
+                    if (input.matches("history \\d+")) {
+                        history(Integer.parseInt(input.substring(8)));
+                    }
                     break;
             }
         }
@@ -196,7 +203,9 @@ public class MainInterface {
         formatter.printToScreen("transferSuccess",usFormat.format(transferAmt));
     }
 
-    private void history() {
-
+    private void history(int pageNum) {
+        int accNum = authServ.getAuthUserAccountNumber();
+        List<Transaction> transactions = transServ.getHistory(accNum,pageNum);
+        formatter.printHistoryTableToScreen(transactions,pageNum,transServ.getHistoryMaxPageNumber(accNum));
     }
 }

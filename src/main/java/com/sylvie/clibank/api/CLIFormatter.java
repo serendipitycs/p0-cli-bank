@@ -4,11 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sylvie.clibank.business.AuthenticationService;
 import com.sylvie.clibank.business.UserService;
+import com.sylvie.clibank.repository.models.Transaction;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.text.NumberFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -47,7 +49,7 @@ public class CLIFormatter {
         System.out.println("----------------------------------------------------------");
         for (Line line : lines) {
             String text = replaceSpecialCharacters(line.getText(),customReplace);
-            Map<String,Integer> paddings = calculatePadding(text,line.getCentering());
+            Map<String,Integer> paddings = calculatePadding(text,line.getCentering(),56);
             System.out.print("|");
             System.out.print(" ".repeat(paddings.get("left")));
             System.out.print(text);
@@ -58,21 +60,55 @@ public class CLIFormatter {
         System.out.print("  > ");
     }
 
+    public void printHistoryTableToScreen(List<Transaction> transactions, int pageNum, int maxPages) {
+        System.out.println("----------------------------------------------------------");
+        System.out.println("|   Type   |         Amount         |     Timestamp      |");
+        for (Transaction t : transactions) {
+            System.out.print("|");
+            //Rename TransferTo and TransferFrom to "Transfer"
+            String typeFinal = t.getType().equals("TransferTo") || t.getType().equals("TransferFrom") ? "Transfer" : t.getType();
+            Map<String, Integer> typePadding = calculatePadding(typeFinal,"Center",10);
+            System.out.print(" ".repeat(typePadding.get("left")));
+            System.out.print(typeFinal);
+            System.out.print(" ".repeat(typePadding.get("right")));
+            System.out.print("|");
+            NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
+            String finalAmount = usFormat.format(t.getAmount());
+            Map<String, Integer> amountPadding = calculatePadding(finalAmount,"Center",24);
+            System.out.print(" ".repeat(amountPadding.get("left")));
+            System.out.print(finalAmount);
+            System.out.print(" ".repeat(amountPadding.get("right")));
+            System.out.print("|");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mma", Locale.US);
+            String finalTimestamp = t.getTimestamp().toLocalDateTime().format(formatter);
+            Map<String, Integer> timestampPadding = calculatePadding(finalTimestamp,"Center",20);
+            System.out.print(" ".repeat(timestampPadding.get("left")));
+            System.out.print(finalTimestamp);
+            System.out.print(" ".repeat(timestampPadding.get("right")));
+            System.out.println("|");
+        }
+        String pageCounter = "[Page " + pageNum + "/" + maxPages + "]---";
+        System.out.print("-".repeat(58-pageCounter.length()));
+        System.out.println(pageCounter);
+        System.out.print("  > ");
+    }
+
+
     public String replaceSpecialCharacters(String text, String specialReplace) {
         NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
         text = text.replace("---","--------------------------------------------------------");
         text = text.replace("$header", authServ.isAuthenticatedUser() ?
                 "Balance: $bal   |   Account #: $accnum" :
-                "Please signin to see account information.");
+                "Please login to see account information.");
         text = text.replace("$bal", usFormat.format(userServ.getBalance(authServ.getAuthUserAccountNumber())));
         text = text.replace("$accnum", Integer.toString(authServ.getAuthUserAccountNumber()));
         text = (specialReplace != null) ? text.replace("$$$",specialReplace) : text;
         return  text;
     }
 
-    public Map<String,Integer> calculatePadding(String text, String centering) {
+    public Map<String,Integer> calculatePadding(String text, String centering, int availPadding) {
         Map<String,Integer> paddings = new HashMap<>();
-        int availPadding = 56 - text.length();
+        availPadding -= text.length();
         switch (centering) {
             case "Left":
                 paddings.put("left",1);

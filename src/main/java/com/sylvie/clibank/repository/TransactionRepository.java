@@ -1,7 +1,12 @@
 package com.sylvie.clibank.repository;
 
+import com.sylvie.clibank.repository.models.Transaction;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionRepository {
     private final Connection c;
@@ -26,6 +31,28 @@ public class TransactionRepository {
         } finally {
              try { c.setAutoCommit(true); } catch (Exception e) {}
         }
+    }
+
+    public List<Transaction> getHistory(int accountId) {
+        String sql = "SELECT * FROM \"Transactions\" WHERE account_id = ?";
+        List<Transaction> returnList = new ArrayList<>();
+        try (PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, accountId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Transaction t = new Transaction(
+                    accountId,
+                    rs.getString("type"),
+                    rs.getDouble("amount"),
+                    rs.getInt("related_account_id"),
+                    rs.getTimestamp("timestamp")
+                );
+                returnList.add(t);
+            }
+        } catch (Exception e) {
+
+        }
+        return returnList;
     }
 
     public void addTransaction(int accountId, String type, double amount) {

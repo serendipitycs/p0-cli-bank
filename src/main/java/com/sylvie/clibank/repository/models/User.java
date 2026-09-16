@@ -28,16 +28,4 @@ public class User {
     public double getBalance() {
         return balance;
     }
-
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public void setAccountPin(String accountPin) {
-        this.accountPin = accountPin;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
 }
