@@ -16,8 +16,7 @@ public class UserRepository {
 
     public void createUser(User user) {
         String sql = "INSERT INTO Users (account_num, pin, balance) VALUES (?, ?, ?)";
-        try {
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (PreparedStatement ps = c.prepareStatement(sql)){
             ps.setInt(1, user.getAccountNumber());
             ps.setString(2, user.getAccountPin());
             ps.setDouble(3, user.getBalance());
@@ -30,8 +29,7 @@ public class UserRepository {
 
     public User readUserByAccountNumber(int accountNumber) {
         String sql = "SELECT * FROM Users WHERE account_num = ?";
-        try {
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (PreparedStatement ps = c.prepareStatement(sql)){
             ps.setInt(1, accountNumber);
             ResultSet rs = ps.executeQuery();
             int accountNum;
@@ -53,8 +51,7 @@ public class UserRepository {
 
     public void updateUserBalanceByAccountNumber(int accountNumber, double newBalance) {
         String sql = "UPDATE Users SET balance = ? WHERE account_num = ?";
-        try {
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (PreparedStatement ps = c.prepareStatement(sql)){
             ps.setDouble(1, newBalance);
             ps.setInt(2, accountNumber);
             int rowsInserted = ps.executeUpdate();
@@ -66,8 +63,7 @@ public class UserRepository {
 
     public double getUserBalanceByAccountNumber(int accountNumber) {
         String sql = "SELECT balance FROM Users WHERE account_num = ?";
-        try {
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (PreparedStatement ps = c.prepareStatement(sql)){
             ps.setInt(1,accountNumber);
             ResultSet rs = ps.executeQuery();
             rs.next();
@@ -78,8 +74,7 @@ public class UserRepository {
 
     public int getNextAccountNumber() {
         String sql = "SELECT MAX(account_num) as current_acc_num FROM Users";
-        try {
-            PreparedStatement ps = c.prepareStatement(sql);
+        try (PreparedStatement ps = c.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             rs.next();
             int max = (rs.getInt("current_acc_num")) + 1;
@@ -88,6 +83,19 @@ public class UserRepository {
             }
             System.out.println();
             return max;
+        } catch (Exception e) {
+
+        }
+        return -1;
+    }
+
+    public int getId(int accountNumber) {
+        String sql = "SELECT id FROM Users WHERE account_num = ?";
+        try (PreparedStatement ps = c.prepareStatement(sql)){
+            ps.setInt(1,accountNumber);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt("id");
         } catch (Exception e) {
 
         }

@@ -27,4 +27,29 @@ public class TransactionRepository {
              try { c.setAutoCommit(true); } catch (Exception e) {}
         }
     }
+
+    public void addTransaction(int accountId, String type, double amount) {
+        String sql = "INSERT INTO \"Transactions\" (account_id, type, amount, related_account_id) VALUES (?, ?, ?, NULL)";
+        try (PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, accountId);
+            ps.setString(2, type);
+            ps.setDouble(3, amount);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addTransaction(int accountId, String type, double amount, int relAccountId) {
+        String sql = "INSERT INTO \"Transactions\" (account_id, type, amount, related_account_id) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, accountId);
+            ps.setString(2, type);
+            ps.setDouble(3, amount);
+            ps.setInt(4,relAccountId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+
+        }
+    }
 }

@@ -17,9 +17,9 @@ public class Main {
         UserRepository userRepo = new UserRepository(connection);
         TransactionRepository transRepo = new TransactionRepository(connection);
         //Services
-        UserService userServ = new UserService(userRepo);
         AuthenticationService authServ = new AuthenticationService(userRepo);
         TransactionService transServ = new TransactionService(userRepo,transRepo);
+        UserService userServ = new UserService(userRepo, transServ);
         //API
         MainInterface mainInterface = new MainInterface(userServ,authServ,transServ);
 

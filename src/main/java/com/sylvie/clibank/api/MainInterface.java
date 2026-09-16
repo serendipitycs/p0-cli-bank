@@ -48,12 +48,15 @@ public class MainInterface {
                     login();
                     break;
                 case "logout":
+                    if (!authServ.isAuthenticatedUser()) continue;
                     logout();
                     break;
                 case "register":
                     register();
                     break;
                 case "history":
+                    if (!authServ.isAuthenticatedUser()) continue;
+                    history();
                     break;
                 case "logs":
                     break;
@@ -80,7 +83,7 @@ public class MainInterface {
         boolean validPin = false;
         String pin = "";
         while (!validPin) {
-            pin = scanner.next();
+            pin = scanner.nextLine();
             if (!authServ.validatePIN(pin)) {
                 validPin = false;
                 formatter.printToScreen("registerFailed",null);
@@ -191,5 +194,9 @@ public class MainInterface {
         }
         NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
         formatter.printToScreen("transferSuccess",usFormat.format(transferAmt));
+    }
+
+    private void history() {
+
     }
 }
