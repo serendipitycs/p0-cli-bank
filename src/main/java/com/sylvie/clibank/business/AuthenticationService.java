@@ -41,6 +41,10 @@ public class AuthenticationService {
         authUserAccountNumber = user.getAccountNumber();
     }
 
+    public boolean validateAccountNum(int accNum) {
+        return userRepo.readUserByAccountNumber(accNum) != null;
+    }
+
     public boolean validatePIN(String pin) {
         try {
             int pinInt = Integer.parseInt(pin);

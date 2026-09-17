@@ -31,6 +31,4 @@ public class UserService {
         transServ.addTransaction(accountNum,"Withdraw", amount, -1);
         return "Complete";
     }
-
-    public int getId(int accountNum) { return userRepo.getId(accountNum); }
 }

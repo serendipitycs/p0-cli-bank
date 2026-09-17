@@ -36,24 +36,32 @@
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
     "line3" : { "text" :  "Login to your Bank of CLI account!", "centering" : "Center"},
-    "line4" : { "text" :  "", "centering" : "Left"},
-    "line5" : { "text" :  "Please enter your account number below...", "centering" : "Center"}
+    "line4" : { "text" :  "Type \"cancel\" to backout", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Account #] :", "centering" : "Left"}
   },
   "login2" : {
     "title" : "Login",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Login to your Bank of CLI account!", "centering" : "Center"},
-    "line4" : { "text" :  "", "centering" : "Left"},
-    "line5" : { "text" :  "Please enter your PIN code below...", "centering" : "Center"}
+    "line3" : { "text" :  "Login to account # $$$", "centering" : "Center"},
+    "line4" : { "text" :  "Type \"cancel\" to backout", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter PIN] :", "centering" : "Left"}
   },
-  "loginFailed" : {
+  "loginFailedAccountNum" : {
     "title" : "Login",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Incorrect Login, Try again...", "centering" : "Center"},
-    "line4" : { "text" :  "", "centering" : "Left"},
-    "line5" : { "text" :  "Please enter your account number below...", "centering" : "Center"}
+    "line3" : { "text" :  "That Account is not is our system,", "centering" : "Center"},
+    "line4" : { "text" :  "Try again! Type \"cancel\" to backout", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Account #] :", "centering" : "Left"}
+  },
+  "loginFailedPin" : {
+    "title" : "Login",
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Incorrect PIN", "centering" : "Center"},
+    "line4" : { "text" :  "Try again! Type \"cancel\" to backout\"", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter PIN] :", "centering" : "Left"}
   },
   "loginSuccess" : {
     "title" : "Account",
@@ -198,5 +206,21 @@
     "line3" : { "text" :  "Transfer Successful!", "centering" : "Center"},
     "line4" : { "text" :  "You sent $$$", "centering" : "Center"},
     "line5" : { "text" :  "Your new balance is $bal", "centering" : "Center"}
+  },
+  "unknownCommand" : {
+    "title" : "Help",
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Unknown Command!", "centering" : "Center"},
+    "line4" : { "text" :  "\"$$$\"", "centering" : "Center"},
+    "line5" : { "text" :  "Use the \"help\" command to see available commands", "centering" : "Center"}
+  },
+  "commandRestricted" : {
+    "title" : "Help",
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Command not available...", "centering" : "Center"},
+    "line4" : { "text" :  "Requires signin to use \"$$$\"", "centering" : "Center"},
+    "line5" : { "text" :  "Please signin with or register...", "centering" : "Center"}
   }
 }

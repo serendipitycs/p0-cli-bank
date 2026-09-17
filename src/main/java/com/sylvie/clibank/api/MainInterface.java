@@ -48,31 +48,46 @@ public class MainInterface {
                     else formatter.printToScreen("helpNoAuth",null);
                     break;
                 case "login":
-                    login();
+                    boolean cancelled = login();
+                    if (cancelled) formatter.printToScreen("welcome",null);
                     break;
                 case "logout":
-                    if (!authServ.isAuthenticatedUser()) continue;
+                    if (!authServ.isAuthenticatedUser()) {
+                        continue;
+                    }
                     logout();
                     break;
                 case "register":
                     register();
                     break;
                 case "history":
-                    if (!authServ.isAuthenticatedUser()) continue;
+                    if (!authServ.isAuthenticatedUser()) {
+                        commandRestricted(input);
+                        continue;
+                    }
                     history(1);
                     break;
                 case "logs":
                     break;
                 case "withdraw":
-                    if (!authServ.isAuthenticatedUser()) continue;
+                    if (!authServ.isAuthenticatedUser()) {
+                        commandRestricted(input);
+                        continue;
+                    }
                     withdraw();
                     break;
                 case "deposit":
-                    if (!authServ.isAuthenticatedUser()) continue;
+                    if (!authServ.isAuthenticatedUser()) {
+                        commandRestricted(input);
+                        continue;
+                    }
                     deposit();
                     break;
                 case "transfer":
-                    if (!authServ.isAuthenticatedUser()) continue;
+                    if (!authServ.isAuthenticatedUser()) {
+                        commandRestricted(input);
+                        continue;
+                    }
                     transfer();
                     break;
                 default:
@@ -80,9 +95,20 @@ public class MainInterface {
                     if (input.matches("history \\d+")) {
                         history(Integer.parseInt(input.substring(8)));
                     }
+                    else {
+                        unknownCommand(input);
+                    }
                     break;
             }
         }
+    }
+
+    private void commandRestricted(String input) {
+        formatter.printToScreen("commandRestricted",input.substring(0, Math.min(input.length(), 20)));
+    }
+
+    private void unknownCommand(String input) {
+        formatter.printToScreen("unknownCommand",input.substring(0, Math.min(input.length(), 20)));
     }
 
     private void register() {
@@ -102,28 +128,35 @@ public class MainInterface {
         formatter.printToScreen("registerSuccess",pin);
     }
 
-    private void login() {
-        boolean signedIn = false;
-        boolean failedSignIn = false;
-        while (!signedIn){
-            if (!failedSignIn) {
-                formatter.printToScreen("login",null);
-            } else {
-                formatter.printToScreen("loginFailed",null);
-            }
-            int accountNum = -1;
+    private boolean login() {
+        LoginState state = LoginState.INIT;
+        int accountNum = -1;
+        String pin;
+        formatter.printToScreen("login",null);
+        //stage 1 collect & validate account #
+        while (state != LoginState.IN_PROGRESS) {
+            if (state == LoginState.F_ACCOUNTNUM)
+                formatter.printToScreen("loginFailedAccountNum", null);
+            String input = scanner.nextLine();
+            if (input.equals("cancel")) return true;
             try {
-                accountNum = scanner.nextInt();
-            } catch (Exception e) {}
-            formatter.printToScreen("login2",null);
-            String pin = scanner.next();
-            if (authServ.signIn(accountNum,pin)) {
-                formatter.printToScreen("loginSuccess",null);
-                signedIn = true;
-            } else {
-                failedSignIn = true;
+                accountNum = Integer.parseInt(input);
+            } catch (Exception e) {
+                state = LoginState.F_ACCOUNTNUM;
             }
+            state = authServ.validateAccountNum(accountNum) ? LoginState.IN_PROGRESS : LoginState.F_ACCOUNTNUM;
         }
+        formatter.printToScreen("login2",String.valueOf(accountNum));
+        //stage 2 collect & validate login
+        while (state != LoginState.COMPLETE) {
+            if (state == LoginState.F_BADLOGIN) formatter.printToScreen("loginFailedPin",null);
+            String input = scanner.nextLine();
+            if (input.equals("cancel")) return true;
+            //attempt to sign in
+            state = authServ.signIn(accountNum,input) ? LoginState.COMPLETE : LoginState.F_BADLOGIN;
+        }
+        formatter.printToScreen("loginSuccess",null);
+        return false;
     }
 
     private void logout() {
@@ -179,11 +212,11 @@ public class MainInterface {
             //validate input
             try {
                 toAccNum = Integer.parseInt(input1);
-                //validate account number exists
-                state = transServ.accountNumExists(toAccNum) ? TransferState.IN_PROGRESS : TransferState.F_ACCOUNTNUM;
             } catch (Exception e) {
                 state = TransferState.F_ACCOUNTNUM;
             }
+            //validate account number exists
+            state = transServ.accountNumExists(toAccNum) ? TransferState.IN_PROGRESS : TransferState.F_ACCOUNTNUM;
         }
         //stage 2 validate payment
         while (state != TransferState.COMPLETE) {
