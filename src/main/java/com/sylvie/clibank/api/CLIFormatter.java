@@ -45,58 +45,75 @@ public class CLIFormatter {
 
     public void printToScreen(String name, String customReplace) {
         List<Line> lines = textBoxes.get(name).getAllLines();
-
-        System.out.println("----------------------------------------------------------");
+        System.out.println(getTitleLine(textBoxes.get(name).getTitle()));
         for (Line line : lines) {
             String text = replaceSpecialCharacters(line.getText(),customReplace);
             Map<String,Integer> paddings = calculatePadding(text,line.getCentering(),56);
-            System.out.print("|");
+            System.out.print("│");
             System.out.print(" ".repeat(paddings.get("left")));
             System.out.print(text);
             System.out.print(" ".repeat(paddings.get("right")));
-            System.out.println("|");
+            System.out.println("│");
         }
-        System.out.println("----------------------------------------------------------");
+        System.out.println("└────────────────────────────────────────────────────────┘");
         System.out.print("  > ");
     }
 
     public void printHistoryTableToScreen(List<Transaction> transactions, int pageNum, int maxPages) {
-        System.out.println("----------------------------------------------------------");
-        System.out.println("|   Type   |         Amount         |     Timestamp      |");
+        System.out.println("┌──────────┬─────────────[History]──┬────────────────────┐");
+        System.out.println("│___Type___│_________Amount_________│_____Timestamp______│");
         for (Transaction t : transactions) {
-            System.out.print("|");
+            System.out.print("│");
             //Rename TransferTo and TransferFrom to "Transfer"
             String typeFinal = t.getType().equals("TransferTo") || t.getType().equals("TransferFrom") ? "Transfer" : t.getType();
             Map<String, Integer> typePadding = calculatePadding(typeFinal,"Center",10);
             System.out.print(" ".repeat(typePadding.get("left")));
             System.out.print(typeFinal);
             System.out.print(" ".repeat(typePadding.get("right")));
-            System.out.print("|");
+            System.out.print("│");
             NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
-            String finalAmount = usFormat.format(t.getAmount());
+            char symbol = t.getType().equals("TransferFrom") || t.getType().equals("Deposit") ? '+' : '-';
+            String finalAmount = symbol + usFormat.format(t.getAmount());
             Map<String, Integer> amountPadding = calculatePadding(finalAmount,"Center",24);
             System.out.print(" ".repeat(amountPadding.get("left")));
             System.out.print(finalAmount);
             System.out.print(" ".repeat(amountPadding.get("right")));
-            System.out.print("|");
+            System.out.print("│");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mma", Locale.US);
             String finalTimestamp = t.getTimestamp().toLocalDateTime().format(formatter);
             Map<String, Integer> timestampPadding = calculatePadding(finalTimestamp,"Center",20);
             System.out.print(" ".repeat(timestampPadding.get("left")));
             System.out.print(finalTimestamp);
             System.out.print(" ".repeat(timestampPadding.get("right")));
-            System.out.println("|");
+            System.out.println("│");
         }
-        String pageCounter = "[Page " + pageNum + "/" + maxPages + "]---";
-        System.out.print("-".repeat(58-pageCounter.length()));
-        System.out.println(pageCounter);
+        String pageCounter = "[Page " + pageNum + "/" + maxPages + "]";
+        System.out.print("└");
+        System.out.print("─".repeat(10));
+        System.out.print("┴");
+        System.out.print("─".repeat(24));
+        System.out.print("┴");
+        System.out.print("─".repeat(18-pageCounter.length()));
+        System.out.print(pageCounter);
+        System.out.println("──┘");
         System.out.print("  > ");
     }
 
+    public String getTitleLine(String title) {
+        String text = "[" + title + "]";
+        Map<String,Integer> padding = calculatePadding(text,"Center",56);
+        StringBuilder sb = new StringBuilder();
+        sb.append("┌");
+        sb.repeat("─",padding.get("left"));
+        sb.append(text);
+        sb.repeat("─",padding.get("right"));
+        sb.append("┐");
+        return sb.toString();
+    }
 
     public String replaceSpecialCharacters(String text, String specialReplace) {
         NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
-        text = text.replace("---","--------------------------------------------------------");
+        text = text.replace("---","────────────────────────────────────────────────────────");
         text = text.replace("$header", authServ.isAuthenticatedUser() ?
                 "Balance: $bal   |   Account #: $accnum" :
                 "Please login to see account information.");

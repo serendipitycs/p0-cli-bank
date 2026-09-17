@@ -9,8 +9,10 @@ public class PrintBox {
     private Line line3;
     private Line line4;
     private Line line5;
+    private String title;
 
     public List<Line> getAllLines() {return Arrays.asList(line1,line2,line3,line4,line5);}
+    public String getTitle() {return title;}
 }
 
 class Line {
