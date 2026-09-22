@@ -19,13 +19,10 @@ public class Main {
         //Services
         AuthenticationService authServ = new AuthenticationService(userRepo);
         TransactionService transServ = new TransactionService(userRepo,transRepo);
-        UserService userServ = new UserService(userRepo, transServ);
+        UserService userServ = new UserService(userRepo,transServ);
         //API
         MainInterface mainInterface = new MainInterface(userServ,authServ,transServ);
-
-
         //Begin the application loop
         mainInterface.mainInterface();
-
     }
 }

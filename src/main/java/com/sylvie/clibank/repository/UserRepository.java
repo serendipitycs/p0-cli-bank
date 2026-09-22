@@ -32,11 +32,9 @@ public class UserRepository {
         try (PreparedStatement ps = c.prepareStatement(sql)){
             ps.setInt(1, accountNumber);
             ResultSet rs = ps.executeQuery();
-            int accountNum;
             String pin;
             double balance;
             if (rs.next()) {
-                accountNum = rs.getInt("account_num");
                 pin = rs.getString("pin");
                 balance = rs.getDouble("balance");
                 return new User(accountNumber,pin,balance);

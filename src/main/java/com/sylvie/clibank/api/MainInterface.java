@@ -37,7 +37,6 @@ public class MainInterface {
         while (!quitApplication) {
             //main repl loop
             String input = scanner.nextLine();
-
             switch (input) {
                 case "help":
                     if (authServ.isAuthenticatedUser()) formatter.printToScreen("helpAuth",null);
@@ -90,6 +89,8 @@ public class MainInterface {
                     }
                     transfer();
                     break;
+                case "quit":
+                    quitApplication = true;
                 default:
                     //regex matching any # of history page
                     if (input.matches("history \\d+")) {
@@ -222,7 +223,7 @@ public class MainInterface {
         while (state != TransferState.COMPLETE) {
             String stage2Screen = (state == TransferState.IN_PROGRESS) ? "transfer2" :
                 (state == TransferState.F_INVALID) ? "transferFailed" : "transferFailedInsufficient";
-            formatter.printToScreen(stage2Screen,null);
+            formatter.printToScreen(stage2Screen, Integer.toString(fromAccNum));
             String input2 = scanner.nextLine();
             //validate input
             try {

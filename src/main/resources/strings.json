@@ -83,49 +83,49 @@
     "title" : "Register",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Register for a Bank of CLI account!", "centering" : "Center"},
-    "line4" : { "text" :  "Please enter your desired PIN code below...", "centering" : "Center"},
-    "line5" : { "text" :  "(must be 4 digits and a positive number)", "centering" : "Center"}
+    "line3" : { "text" :  "Enter a PIN for you new account", "centering" : "Center"},
+    "line4" : { "text" :  "(enter a 4 digit and positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter PIN] :", "centering" : "Left"}
   },
   "registerFailed" : {
     "title" : "Register",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Register for a Bank of CLI account!", "centering" : "Center"},
-    "line4" : { "text" :  "Invalid PIN, try again...", "centering" : "Center"},
-    "line5" : { "text" :  "(must be 4 digits and a positive number)", "centering" : "Center"}
+    "line3" : { "text" :  "Invalid PIN, Try again!", "centering" : "Center"},
+    "line4" : { "text" :  "(enter a 4 digit and positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter PIN] :", "centering" : "Center"}
   },
   "registerSuccess" : {
     "title" : "Register",
-  "line1" : { "text" :  "$header", "centering" : "Center"},
-  "line2" : { "text" :  "---", "centering" : "Center"},
-  "line3" : { "text" :  "You've created an account, you're logged in now!", "centering" : "Center"},
-  "line4" : { "text" :  "Please note your credentials for future login:", "centering" : "Center"},
-  "line5" : { "text" :  "Account Number: $accnum | PIN Code: $$$", "centering" : "Center"}
+    "line1" : { "text" :  "$header", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "You've created an account, you're logged in now!", "centering" : "Center"},
+    "line4" : { "text" :  "Please note your credentials for future login:", "centering" : "Center"},
+    "line5" : { "text" :  "Account Number: $accnum | PIN Code: $$$", "centering" : "Center"}
   },
   "withdraw" : {
     "title" : "Withdraw",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
     "line3" : { "text" :  "Withdraw your money!", "centering" : "Center"},
-    "line4" : { "text" :  "", "centering" : "Center"},
-    "line5" : { "text" :  "Please enter an amount to withdraw below...", "centering" : "Center"}
+    "line4" : { "text" :  "(don't include $ sign)", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Amount] :", "centering" : "Left"}
   },
   "withdrawFailed" : {
     "title" : "Withdraw",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
     "line3" : { "text" :  "Withdrawl failed..", "centering" : "Center"},
-    "line4" : { "text" :  "(Please enter a positive number)", "centering" : "Center"},
-    "line5" : { "text" :  "Please try again below...", "centering" : "Center"}
+    "line4" : { "text" :  "(enter a positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Amount] :", "centering" : "Left"}
   },
   "withdrawInsufficient" : {
     "title" : "Withdraw",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
     "line3" : { "text" :  "Withdrawl failed.. Insufficient Funds", "centering" : "Center"},
-    "line4" : { "text" :  "(Please enter a positive number)", "centering" : "Center"},
-    "line5" : { "text" :  "Please try again below...", "centering" : "Center"}
+    "line4" : { "text" :  "(enter a positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Amount] :", "centering" : "Left"}
   },
   "withdrawSuccess" : {
     "title" : "Withdraw",
@@ -140,16 +140,16 @@
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
     "line3" : { "text" :  "Deposit money into your account!", "centering" : "Center"},
-    "line4" : { "text" :  "", "centering" : "Center"},
-    "line5" : { "text" :  "Please enter an amount to despoit below...", "centering" : "Center"}
+    "line4" : { "text" :  "(don't include $ sign)", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Amount] :", "centering" : "Left"}
   },
   "depositFailed" : {
     "title" : "Deposit",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
     "line3" : { "text" :  "Deposit failed..", "centering" : "Center"},
-    "line4" : { "text" :  "(Enter a positive number)", "centering" : "Center"},
-    "line5" : { "text" :  "Please try again below...", "centering" : "Center"}
+    "line4" : { "text" :  "(enter a positive number)", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Amount] :", "centering" : "Left"}
   },
   "depositSuccess" : {
     "title" : "Deposit",
@@ -163,17 +163,17 @@
     "title" : "Transfer",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Transfer your money to another account:", "centering" : "Center"},
-    "line4" : { "text" :  "", "centering" : "Center"},
-    "line5" : { "text" :  "Please enter an Account # to transfer funds to...", "centering" : "Center"}
+    "line3" : { "text" :  "Transfer your money to another account!", "centering" : "Center"},
+    "line4" : { "text" :  "Please enter an Account # to transfer funds to", "centering" : "Center"},
+    "line5" : { "text" :  "[Enter Account Number] :", "centering" : "Left"}
   },
   "transfer2" : {
     "title" : "Transfer",
   "line1" : { "text" :  "$header", "centering" : "Center"},
   "line2" : { "text" :  "---", "centering" : "Center"},
-  "line3" : { "text" :  "Transfer your money to another account:", "centering" : "Center"},
-  "line4" : { "text" :  "Please enter the amount to transfer...", "centering" : "Center"},
-  "line5" : { "text" :  "(Must be a positive number and have funds available)", "centering" : "Center"}
+  "line3" : { "text" :  "Transfer to account # $$$", "centering" : "Center"},
+  "line4" : { "text" :  "(enter a positive number and have funds available)", "centering" : "Center"},
+  "line5" : { "text" :  "[Enter Amount] :", "centering" : "Left"}
   },
   "transferFailedAccNum" : {
     "title" : "Transfer",
@@ -181,23 +181,23 @@
     "line2" : { "text" :  "---", "centering" : "Center"},
     "line3" : { "text" :  "Transfer failed...", "centering" : "Center"},
     "line4" : { "text" :  "Invalid Account # Try again..", "centering" : "Center"},
-    "line5" : { "text" :  "Please enter an Account # to transfer funds to...", "centering" : "Center"}
+    "line5" : { "text" :  "[Enter Account Number] :", "centering" : "Left"}
   },
   "transferFailedInsufficient" : {
     "title" : "Transfer",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Transfer failed...", "centering" : "Center"},
+    "line3" : { "text" :  "Transfer failed..", "centering" : "Center"},
     "line4" : { "text" :  "Insufficient funds on your account.. Try again..", "centering" : "Center"},
-    "line5" : { "text" :  "Please enter the amount to transfer...", "centering" : "Center"}
+    "line5" : { "text" :  "[Enter Amount] :", "centering" : "Left"}
   },
   "transferFailed" : {
     "title" : "Transfer",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Transfer failed...", "centering" : "Center"},
+    "line3" : { "text" :  "Transfer failed..", "centering" : "Center"},
     "line4" : { "text" :  "Invalid input (must be positive number).. Try again..", "centering" : "Center"},
-    "line5" : { "text" :  "Please enter the amount to transfer...", "centering" : "Center"}
+    "line5" : { "text" :  "[Enter Amount] :", ",centering" : "Left"}
   },
   "transferSuccess" : {
     "title" : "Transfer",
@@ -219,8 +219,8 @@
     "title" : "Help",
     "line1" : { "text" :  "$header", "centering" : "Center"},
     "line2" : { "text" :  "---", "centering" : "Center"},
-    "line3" : { "text" :  "Command not available...", "centering" : "Center"},
+    "line3" : { "text" :  "Command not available..", "centering" : "Center"},
     "line4" : { "text" :  "Requires signin to use \"$$$\"", "centering" : "Center"},
-    "line5" : { "text" :  "Please signin with or register...", "centering" : "Center"}
+    "line5" : { "text" :  "Please login or register..", "centering" : "Center"}
   }
 }
