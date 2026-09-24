@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 import com.sylvie.clibank.business.AuthenticationService;
 import com.sylvie.clibank.business.UserService;
 import com.sylvie.clibank.repository.models.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -88,11 +90,7 @@ public class CLIFormatter {
             System.out.println("│");
         }
         String pageCounter = "[Page " + pageNum + "/" + maxPages + "]";
-        System.out.print("└");
-        System.out.print("─".repeat(10));
-        System.out.print("┴");
-        System.out.print("─".repeat(24));
-        System.out.print("┴");
+        System.out.print("└──────────┴────────────────────────┴");
         System.out.print("─".repeat(18-pageCounter.length()));
         System.out.print(pageCounter);
         System.out.println("──┘");

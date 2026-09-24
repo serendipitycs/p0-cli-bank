@@ -91,6 +91,7 @@ public class MainInterface {
                     break;
                 case "quit":
                     quitApplication = true;
+                    break;
                 default:
                     //regex matching any # of history page
                     if (input.matches("history \\d+")) {
@@ -173,28 +174,32 @@ public class MainInterface {
         while (!withdrawd.equals("Complete")) {
             if (withdrawd.equals("Negative")) formatter.printToScreen("withdrawFailed",null);
             if (withdrawd.equals("Insufficient")) formatter.printToScreen("withdrawInsufficient",null);
+            String input = scanner.nextLine();
             try {
-                withdrawAmt = scanner.nextDouble();
+                withdrawAmt = Double.parseDouble(input);
                 withdrawd = userServ.withdraw(accountNum,withdrawAmt);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                withdrawd = "Negative";
+            }
         }
         NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
         formatter.printToScreen("withdrawSuccess",usFormat.format(withdrawAmt));
     }
 
     private void deposit() {
-        boolean deposited = false;
-        boolean failed = false;
+        String deposited = "Init";
         int accountNum = authServ.getAuthUserAccountNumber();
         double depositAmt = 0;
         formatter.printToScreen("deposit",null);
-        while (!deposited) {
-            if (failed) formatter.printToScreen("depositFailed",null);
+        while (!deposited.equals("Complete")) {
+            if (deposited.equals("Failed")) formatter.printToScreen("depositFailed",null);
+            String input = scanner.nextLine();
             try {
-                depositAmt = scanner.nextDouble();
+                depositAmt = Double.parseDouble(input);
                 deposited = userServ.deposit(accountNum,depositAmt);
-                if (!deposited) failed = true;
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                deposited = "Failed";
+            }
         }
         NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
         formatter.printToScreen("depositSuccess", usFormat.format(depositAmt));

@@ -2,14 +2,18 @@ package com.sylvie.clibank.business;
 
 import com.sylvie.clibank.repository.UserRepository;
 import com.sylvie.clibank.repository.models.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 
 public class AuthenticationService {
     private final UserRepository userRepo;
+    private final Logger logger;
 
     public AuthenticationService(UserRepository userRepo) {
         this.userRepo = userRepo;
+        logger = LoggerFactory.getLogger(AuthenticationService.class);
     }
 
     private static boolean authenticatedUser = false;
@@ -24,12 +28,14 @@ public class AuthenticationService {
         if (user.getAccountPin().equals(pin)) {
             authenticatedUser = true;
             authUserAccountNumber = accountNum;
+            logger.info("Account # {} signed in.", authUserAccountNumber);
             return true;
         }
         return false;
     }
 
     public void signOut () {
+        logger.info("Account # {} signed out.",authUserAccountNumber);
         authUserAccountNumber = -1;
         authenticatedUser = false;
     }
@@ -39,6 +45,7 @@ public class AuthenticationService {
         userRepo.createUser(user);
         authenticatedUser = true;
         authUserAccountNumber = user.getAccountNumber();
+        logger.info("Account # {} just registered.",authUserAccountNumber);
     }
 
     public boolean validateAccountNum(int accNum) {

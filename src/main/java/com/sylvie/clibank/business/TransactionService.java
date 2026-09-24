@@ -4,6 +4,8 @@ import com.sylvie.clibank.api.TransferState;
 import com.sylvie.clibank.repository.TransactionRepository;
 import com.sylvie.clibank.repository.UserRepository;
 import com.sylvie.clibank.repository.models.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Comparator;
 import java.util.List;
@@ -12,10 +14,12 @@ public class TransactionService {
 
     private final UserRepository userRepo;
     private final TransactionRepository transRepo;
+    private final Logger logger;
 
     public TransactionService(UserRepository userRepo, TransactionRepository transRepo) {
         this.userRepo = userRepo;
         this.transRepo = transRepo;
+        logger = LoggerFactory.getLogger(TransactionService.class);
     }
 
     public boolean accountNumExists(int accountNum) {
@@ -29,6 +33,7 @@ public class TransactionService {
         transRepo.transfer(fromAcc,toAcc,amount);
         addTransaction(fromAcc,"TransferTo",amount,toAcc);
         addTransaction(toAcc,"TransferFrom",amount,fromAcc);
+        logger.info("Account # {} transferred {} to Account # {}.", fromAcc, amount, toAcc);
         return TransferState.COMPLETE;
     }
 

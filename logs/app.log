@@ -1,0 +1,11 @@
+2026-09-23 14:32:34 [main] INFO  c.s.clibank.business.UserService - Account # 100009 Deposited: 10000.0
+2026-09-23 15:26:48 [main] ERROR c.s.clibank.business.UserService - Account # 100009 tried to deposit a negative amount!
+2026-09-23 15:26:53 [main] INFO  c.s.clibank.business.UserService - Account # 100009 Deposited: 2000.0
+2026-09-23 15:27:42 [main] INFO  c.s.clibank.business.UserService - Account # 100009 Withdrew: 99.0
+2026-09-23 15:27:48 [main] ERROR c.s.clibank.business.UserService - Account # 100009 tried to withdraw a negative amount!
+2026-09-23 15:27:54 [main] INFO  c.s.clibank.business.UserService - Account # 100009 Withdrew: 0.0
+2026-09-24 11:29:25 [main] INFO  c.s.c.business.AuthenticationService - Account # 100010 just registered.
+2026-09-24 11:30:08 [main] INFO  c.s.clibank.business.UserService - Account # 100010 Deposited: 10000.0
+2026-09-24 11:30:13 [main] ERROR c.s.clibank.business.UserService - Account # 100010 tried to withdraw a negative amount!
+2026-09-24 11:30:17 [main] INFO  c.s.clibank.business.UserService - Account # 100010 Withdrew: 199.0
+2026-09-24 11:30:28 [main] INFO  c.s.c.business.TransactionService - Account # 100010 transferred 100.0 to Account # 100009.

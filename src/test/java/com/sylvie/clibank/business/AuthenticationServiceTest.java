@@ -21,10 +21,11 @@ public class AuthenticationServiceTest {
 
     @Test
     void signInPositive() {
-        when(userRepo.readUserByAccountNumber(1)).thenReturn(new User(1,"0000"));
+        String pin = "0000";
+        when(userRepo.readUserByAccountNumber(1)).thenReturn(new User(1,pin));
         User user = userRepo.readUserByAccountNumber(1);
         assertNotNull(user);
-        assertEquals(user.getAccountPin(), "0000");
+        assertEquals(user.getAccountPin(), pin);
     }
     @Test
     void signInNegative_InvalidAccountNum() {
@@ -34,9 +35,11 @@ public class AuthenticationServiceTest {
     }
     @Test
     void signInNegative_WrongPin() {
-        when(userRepo.readUserByAccountNumber(3)).thenReturn(new User(3,"1111"));
+        String correctPin = "1111";
+        String incorrectPin = "1112";
+        when(userRepo.readUserByAccountNumber(3)).thenReturn(new User(3,correctPin));
         User user = userRepo.readUserByAccountNumber(3);
         assertNotNull(user);
-        assertNotEquals(user.getAccountPin(), "1112");
+        assertNotEquals(user.getAccountPin(), incorrectPin);
     }
 }
