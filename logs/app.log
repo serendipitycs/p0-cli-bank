@@ -9,3 +9,7 @@
 2026-09-24 11:30:13 [main] ERROR c.s.clibank.business.UserService - Account # 100010 tried to withdraw a negative amount!
 2026-09-24 11:30:17 [main] INFO  c.s.clibank.business.UserService - Account # 100010 Withdrew: 199.0
 2026-09-24 11:30:28 [main] INFO  c.s.c.business.TransactionService - Account # 100010 transferred 100.0 to Account # 100009.
+2026-09-24 12:17:27 [main] INFO  c.s.c.business.AuthenticationService - Account # 100009 signed in.
+2026-09-24 13:01:12 [main] INFO  c.s.c.business.AuthenticationService - Account # 100009 signed in.
+2026-09-24 13:06:41 [main] INFO  c.s.c.business.AuthenticationService - Account # 100009 signed in.
+2026-09-24 13:10:29 [main] INFO  c.s.c.business.AuthenticationService - Account # 100009 signed in.

@@ -61,6 +61,22 @@ public class CLIFormatter {
         System.out.print("  > ");
     }
 
+    public void printHelpToScreen(String name, int pageNum, int maxPages) {
+        List<Line> lines = textBoxes.get(name).getAllLines();
+        System.out.println(getTitleLine(textBoxes.get(name).getTitle()));
+        for (Line line : lines) {
+            String text = line.getText();
+            Map<String,Integer> paddings = calculatePadding(text,line.getCentering(),56);
+            System.out.print("│");
+            System.out.print(" ".repeat(paddings.get("left")));
+            System.out.print(text);
+            System.out.print(" ".repeat(paddings.get("right")));
+            System.out.println("│");
+        }
+        System.out.println(getPageNumberLine(pageNum,maxPages));
+        System.out.print("  > ");
+    }
+
     public void printHistoryTableToScreen(List<Transaction> transactions, int pageNum, int maxPages) {
         System.out.println("┌──────────┬─────────────[History]──┬────────────────────┐");
         System.out.println("│___Type___│_________Amount_________│_____Timestamp______│");
@@ -97,6 +113,16 @@ public class CLIFormatter {
         System.out.print("  > ");
     }
 
+    public String getPageNumberLine(int pageNum, int maxPageNum) {
+        StringBuilder sb = new StringBuilder();
+        String pageCounter = "[Page " + pageNum + "/" + maxPageNum + "]";
+        sb.append("└");
+        sb.repeat("─", 54 - pageCounter.length());
+        sb.append(pageCounter);
+        sb.append("──┘");
+        return sb.toString();
+    }
+
     public String getTitleLine(String title) {
         String text = "[" + title + "]";
         Map<String,Integer> padding = calculatePadding(text,"Center",56);
@@ -113,8 +139,8 @@ public class CLIFormatter {
         NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
         text = text.replace("---","────────────────────────────────────────────────────────");
         text = text.replace("$header", authServ.isAuthenticatedUser() ?
-                "Balance: $bal   |   Account #: $accnum" :
-                "Please login to see account information.");
+            "Balance: $bal   |   Account #: $accnum" :
+            "Please login to see account information.");
         text = text.replace("$bal", usFormat.format(userServ.getBalance(authServ.getAuthUserAccountNumber())));
         text = text.replace("$accnum", Integer.toString(authServ.getAuthUserAccountNumber()));
         text = (specialReplace != null) ? text.replace("$$$",specialReplace) : text;

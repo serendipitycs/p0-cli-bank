@@ -39,11 +39,11 @@ public class MainInterface {
             String input = scanner.nextLine();
             switch (input) {
                 case "help":
-                    if (authServ.isAuthenticatedUser()) formatter.printToScreen("helpAuth",null);
+                    if (authServ.isAuthenticatedUser()) formatter.printHelpToScreen("helpAuth", 1, 2);
                     else formatter.printToScreen("helpNoAuth",null);
                     break;
                 case "help 2":
-                    if (authServ.isAuthenticatedUser()) formatter.printToScreen("helpAuth2",null);
+                    if (authServ.isAuthenticatedUser()) formatter.printHelpToScreen("helpAuth2",2, 2);
                     else formatter.printToScreen("helpNoAuth",null);
                     break;
                 case "login":
