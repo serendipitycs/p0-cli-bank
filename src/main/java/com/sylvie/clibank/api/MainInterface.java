@@ -39,12 +39,12 @@ public class MainInterface {
             String input = scanner.nextLine();
             switch (input) {
                 case "help":
-                    if (authServ.isAuthenticatedUser()) formatter.printHelpToScreen("helpAuth", 1, 2);
-                    else formatter.printToScreen("helpNoAuth",null);
-                    break;
-                case "help 2":
-                    if (authServ.isAuthenticatedUser()) formatter.printHelpToScreen("helpAuth2",2, 2);
-                    else formatter.printToScreen("helpNoAuth",null);
+                    if (authServ.isAuthenticatedUser()) {
+                        formatter.printHelpToScreen("helpAuth", 1, 2);
+                    }
+                    else {
+                        formatter.printToScreen("helpNoAuth", null);
+                    }
                     break;
                 case "login":
                     boolean cancelled = login();
@@ -96,6 +96,18 @@ public class MainInterface {
                     //regex matching any # of history page
                     if (input.matches("history \\d+")) {
                         history(Integer.parseInt(input.substring(8)));
+                    }
+                    //regex matching any # of help page
+                    else if (input.matches("help \\d+")) {
+                        int pageNum = Integer.parseInt(input.substring(5));
+                        if (authServ.isAuthenticatedUser()) {
+                            if (pageNum == 1)
+                                formatter.printHelpToScreen("helpAuth", 1, 2);
+                            else
+                                formatter.printHelpToScreen("helpAuth2", 2, 2);
+                        } else {
+                            formatter.printToScreen("helpNoAuth",null);
+                        }
                     }
                     else {
                         unknownCommand(input);

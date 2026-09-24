@@ -6,14 +6,14 @@ public interface UserRepository {
 
     void createUser(User user);
 
-    public User readUserByAccountNumber(int accountNumber);
+    User readUserByAccountNumber(int accountNumber);
 
-    public void updateUserBalanceByAccountNumber(int accountNumber, double newBalance);
+    void updateUserBalanceByAccountNumber(int accountNumber, double newBalance);
 
-    public double getUserBalanceByAccountNumber(int accountNumber);
+    double getUserBalanceByAccountNumber(int accountNumber);
 
-    public int getNextAccountNumber();
+    int getNextAccountNumber();
 
-    public int getId(int accountNumber);
+    int getId(int accountNumber);
 }
 

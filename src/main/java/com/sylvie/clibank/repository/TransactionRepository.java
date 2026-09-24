@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface TransactionRepository {
 
-    public void transfer(int fromAcc, int toAcc, double amount);
+    void transfer(int fromAcc, int toAcc, double amount);
 
-    public List<Transaction> getHistory(int accountId);
+    List<Transaction> getHistory(int accountId);
 
-    public void addTransaction(int accountId, String type, double amount);
+    void addTransaction(int accountId, String type, double amount);
 
-    public void addTransaction(int accountId, String type, double amount, int relAccountId);
+    void addTransaction(int accountId, String type, double amount, int relAccountId);
 }
