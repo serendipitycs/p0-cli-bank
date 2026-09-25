@@ -13,5 +13,7 @@ public interface TransactionService {
 
     List<Transaction> getHistory(int accountNum, int pageNum);
 
+    int getHistoryCount(int accountNum);
+
     int getHistoryMaxPageNumber(int accountNum);
 }

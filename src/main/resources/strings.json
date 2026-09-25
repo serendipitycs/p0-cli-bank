@@ -9,24 +9,24 @@
   },
   "helpNoAuth" : {
     "title" : "Help",
-    "line1" : { "text" :  "* Login - Authenticate with Account # and PIN", "centering" : "Left"},
-    "line2" : { "text" :  "* Register - Create a new account with PIN", "centering" : "Left"},
-    "line3" : { "text" :  "* Quit - exit the application", "centering" : "Left"},
+    "line1" : { "text" :  "* login - Authenticate with Account # and PIN", "centering" : "Left"},
+    "line2" : { "text" :  "* register - Create a new account with PIN", "centering" : "Left"},
+    "line3" : { "text" :  "* quit - exit the application", "centering" : "Left"},
     "line4" : { "text" :  "", "centering" : "Left"},
     "line5" : { "text" :  "", "centering" : "Center"}
   },
   "helpAuth" : {
     "title" : "Help",
-    "line1" : { "text" :  "* Withdraw - Withdraw money from your account", "centering" : "Left"},
-    "line2" : { "text" :  "* Deposit - Add money to your account", "centering" : "Left"},
-    "line3" : { "text" :  "* Transfer - Transfer money to another account", "centering" : "Left"},
-    "line4" : { "text" :  "* History [Page Number] - View transaction history", "centering" : "Left"},
-    "line5" : { "text" :  "* Help [Page Number] - Visit the other help pages", "centering" : "Left"}
+    "line1" : { "text" :  "* withdraw - Withdraw money from your account", "centering" : "Left"},
+    "line2" : { "text" :  "* deposit - Add money to your account", "centering" : "Left"},
+    "line3" : { "text" :  "* transfer - Transfer money to another account", "centering" : "Left"},
+    "line4" : { "text" :  "* history [Page Number] - View transaction history", "centering" : "Left"},
+    "line5" : { "text" :  "* help [Page Number] - Visit the other help pages", "centering" : "Left"}
   },
   "helpAuth2" : {
     "title" : "Help",
-    "line1" : { "text" :  "* Logout - Log out of your account", "centering" : "Left"},
-    "line2" : { "text" :  "", "centering" : "Left"},
+    "line1" : { "text" :  "* logout - Log out of your account", "centering" : "Left"},
+    "line2" : { "text" :  "* account/balance - Display account info", "centering" : "Left"},
     "line3" : { "text" :  "", "centering" : "Left"},
     "line4" : { "text" :  "", "centering" : "Left"},
     "line5" : { "text" :  "", "centering" : "Left"}
@@ -222,5 +222,13 @@
     "line3" : { "text" :  "Command not available..", "centering" : "Center"},
     "line4" : { "text" :  "Requires signin to use \"$$$\"", "centering" : "Center"},
     "line5" : { "text" :  "Please login or register..", "centering" : "Center"}
+  },
+  "account" : {
+    "title": "Account",
+    "line1" : { "text" :  "Account #: $accnum", "centering" : "Center"},
+    "line2" : { "text" :  "---", "centering" : "Center"},
+    "line3" : { "text" :  "Balance: $bal", "centering" : "Center"},
+    "line4" : { "text" :  "Transactions: $$$", "centering" : "Center"},
+    "line5" : { "text" :  "", "centering" : "Center"}
   }
 }

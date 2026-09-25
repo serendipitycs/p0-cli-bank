@@ -58,6 +58,22 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
+    public int getHistoryCount(int accountId) {
+        String sql = "SELECT COUNT(*) AS TCount FROM \"Transactions\" WHERE account_id = ? GROUP BY account_id = ?";
+        try (PreparedStatement ps = c.prepareStatement(sql)){
+            ps.setInt(1, accountId);
+            ps.setInt(2, accountId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                return rs.getInt("TCount");
+            }
+        } catch (Exception e) {
+
+        }
+        return -1;
+    }
+
+    @Override
     public void addTransaction(int accountId, String type, double amount) {
         String sql = "INSERT INTO \"Transactions\" (account_id, type, amount, related_account_id) VALUES (?, ?, ?, NULL)";
         try (PreparedStatement ps = c.prepareStatement(sql)) {

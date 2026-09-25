@@ -10,6 +10,8 @@ public interface TransactionRepository {
 
     List<Transaction> getHistory(int accountId);
 
+    int getHistoryCount(int accountNum);
+
     void addTransaction(int accountId, String type, double amount);
 
     void addTransaction(int accountId, String type, double amount, int relAccountId);

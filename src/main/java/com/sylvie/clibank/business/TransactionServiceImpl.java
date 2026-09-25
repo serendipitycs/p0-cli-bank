@@ -64,6 +64,11 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
+    public int getHistoryCount(int accountNum) {
+        return transRepo.getHistoryCount(userRepo.getId(accountNum));
+    }
+
+    @Override
     public int getHistoryMaxPageNumber(int accountNum) {
         List<Transaction> transactions = transRepo.getHistory(userRepo.getId(accountNum));
         boolean hasRemainder = transactions.size() % 4 >= 1;

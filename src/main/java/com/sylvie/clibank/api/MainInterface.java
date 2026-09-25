@@ -37,6 +37,7 @@ public class MainInterface {
         while (!quitApplication) {
             //main repl loop
             String input = scanner.nextLine();
+            input = input.trim().toLowerCase(Locale.ROOT);
             switch (input) {
                 case "help":
                     if (authServ.isAuthenticatedUser()) {
@@ -91,6 +92,15 @@ public class MainInterface {
                     break;
                 case "quit":
                     quitApplication = true;
+                    break;
+                case "account":
+                case "balance":
+                    if (!authServ.isAuthenticatedUser()) {
+                        commandRestricted(input);
+                        continue;
+                    }
+                    int transactionsCount = transServ.getHistoryCount(authServ.getAuthUserAccountNumber());
+                    formatter.printToScreen("account", String.valueOf(transactionsCount));
                     break;
                 default:
                     //regex matching any # of history page
